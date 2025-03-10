@@ -3,5 +3,6 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path('',views.deneme,name="deneme" ),
+    #path('',views.deneme,name="deneme" ),
+    path('',views.airplane_list),
 ]
