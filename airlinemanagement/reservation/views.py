@@ -1,6 +1,8 @@
 from django.shortcuts import render
+
+# Create your views here.
 from django.http import HttpResponse
 
 # Create your views here.
-def deneme(requests):
-    return HttpResponse("deneme yüklendi mi")
+def deneme3(requests):
+    return HttpResponse("deneme3 yüklendi mi")
