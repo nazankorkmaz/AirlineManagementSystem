@@ -6,5 +6,5 @@ urlpatterns = [
 
     path('',views.airplane),
     path('<int:id>',views.airplane_id),
-    path('<int:id>/flights',views.airplane_flights),
+    path('<int:id>/flights',views.airplane_flights), # Ucaga ait ucuslar alinir
 ]

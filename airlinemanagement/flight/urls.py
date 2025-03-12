@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    #path('',views.deneme2,name="deneme2" ),
-    path('',views.flight_list),
-
+    path('',views.flight),
+    path('<int:id>',views.flight_id),
+    path('<int:id>/reservations',views.flight_reservation), # ucusa ait rezervasyonlar alinir
 ]

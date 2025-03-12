@@ -1,4 +1,6 @@
+from datetime import timedelta
 from django.db import models
+from django.forms import ValidationError
 
 from airplane.models import Airplane
 
@@ -17,4 +19,4 @@ class Flight(models.Model):
 
     arrival_time = models.DateTimeField() # varis zamani
 
-    airplane = models.ForeignKey(Airplane,on_delete=models.CASCADE, related_name='flights_airplane') # her ucus bir ucaga atanir - ucaga birden fazşa ucus atanabilir
+    airplane = models.ForeignKey(Airplane,on_delete=models.CASCADE, related_name='flights_airplane') # her ucus bir ucaga atanir - ucaga birden fazla ucus atanabilir
