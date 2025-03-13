@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "77def08f-9d3b-4108-9103-035ba384c9b7",
+		"name": "Airline Management System",
+		"description": "With the airline management system project a Web API system was developed for the management of airplanes, flights and reservations. Documents were made in separate folders for apps.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35040056"
+	},
+	"item": [
+		{
+			"name": "Airplanes",
+			"item": [
+				{
+					"name": "Get List Airplane",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tail_number\": \"TD-WS5\",\r\n        \"model\": \"Airbus 821\",\r\n        \"capacity\": 20,\r\n        \"production_year\": 1980,\r\n        \"status\": true\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								""
+							]
+						},
+						"description": "### GET /airplanes/\n\nThis endpoint retrieves a list of airplanes.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/airplanes/`\n    \n- Headers: None\n    \n- Body: N/A\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \\[ { \"id\": 0, \"tail_number\": \"\", \"model\": \"\", \"capacity\": 0, \"production_year\": 0, \"status\": true } \\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"tail_number\": {\n                \"type\": \"string\"\n            },\n            \"model\": {\n                \"type\": \"string\"\n            },\n            \"capacity\": {\n                \"type\": \"number\"\n            },\n            \"production_year\": {\n                \"type\": \"number\"\n            },\n            \"status\": {\n                \"type\": \"boolean\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Airplane",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tail_number\": \"TK-WSZ\",\r\n        \"model\": \"Airbus 821\",\r\n        \"capacity\": 10,\r\n        \"production_year\": 2020,\r\n        \"status\": true\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								""
+							]
+						},
+						"description": "### Add Airplane\n\nThis endpoint allows you to add a new airplane to the database.\n\n#### Request Body\n\n- `tail_number` (string): The tail number of the airplane.\n    \n- `model` (string): The model of the airplane.\n    \n- `capacity` (number): The seating capacity of the airplane.\n    \n- `production_year` (number): The production year of the airplane.\n    \n- `status` (boolean): The status of the airplane.\n    \n\n#### Response\n\nUpon successful creation, the server responds with a status code of 201 and a JSON object containing the details of the newly added airplane, including its unique `id`, `tail_number`, `model`, `capacity`, `production_year`, and `status`."
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Airplane",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "2",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								"{{id}}"
+							]
+						},
+						"description": "### Get Airplane Details\n\nThis endpoint retrieves details of a specific airplane based on the provided ID.\n\n#### Request Parameters\n\n- `id` (path parameter) - The unique identifier of the airplane.\n    \n\n#### Response\n\n- Status: 200 OK\n    \n- Content-Type: application/json\n    \n\n##### Response Body\n\n``` json\n{\n    \"id\": 0,\n    \"tail_number\": \"\",\n    \"model\": \"\",\n    \"capacity\": 0,\n    \"production_year\": 0,\n    \"status\": true\n}\n\n ```\n\nThe response body contains the details of the airplane including its ID, tail number, model, capacity, production year, and status."
+					},
+					"response": []
+				},
+				{
+					"name": "Patch By Id Airplane",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"tail_number\": \"TC-WST\",\r\n        \"model\": \"Airbus 721\",\r\n        \"capacity\": 70,\r\n        \"production_year\": 1980,\r\n        \"status\": true\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								"{{id}}"
+							]
+						},
+						"description": "### Update Airplane Details\n\nThis endpoint allows the client to update the details of an airplane by sending a PATCH request to the specified URL.\n\n#### Request Body\n\n- `tail_number` (string): The tail number of the airplane.\n    \n- `model` (string): The model of the airplane.\n    \n- `capacity` (number): The seating capacity of the airplane.\n    \n- `production_year` (number): The production year of the airplane.\n    \n- `status` (boolean): The status of the airplane.\n    \n\n#### Response\n\nUpon successful update, the server responds with a status code of 200 and a JSON object containing the updated details of the airplane, including the `id`, `tail_number`, `model`, `capacity`, `production_year`, and `status`."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By Id Airplane",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								"{{id}}"
+							]
+						},
+						"description": "This endpoint sends an HTTP DELETE request to delete the airplane with the specified ID.\n\n### Request Body\n\nThis request does not contain a request body.\n\n### Response\n\n- Status: 204\n    \n- Content-Type: text/xml\n    \n- Body: null"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Airplanes Flights By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/airplanes/{{id}}/flights",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"airplanes",
+								"{{id}}",
+								"flights"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve the flights associated with a specific airplane, identified by the {{id}} parameter, from the server.\n\n### Request\n\n- Path: /airplanes/{{id}}/flights\n    \n- Method: GET\n    \n\n### Response\n\nThe server responds with a status code of 200 and a JSON array containing the details of the flights associated with the airplane. Each flight object in the array includes the following properties:\n\n- id: The unique identifier for the flight\n    \n- flight_number: The flight number\n    \n- departure: The departure location\n    \n- destination: The destination location\n    \n- departure_time: The departure time\n    \n- arrival_time: The arrival time\n    \n- airplane: The unique identifier of the airplane associated with the flight\n    \n\nThe response is in the JSON format."
+					},
+					"response": []
+				}
+			],
+			"description": "  \n**GET /airplanes/**: List all airplanes.  \n**GET /airplanes/{id}/**: Get details of a specific airplane.  \n**GET /airplanes/{id}/flights**: Get the flights of a specific airplane.  \n**POST /airplanes/**: Add a new airplane.  \n**PATCH /airplanes/{id}/**: Update a specific airplane.  \n**DELETE /airplanes/{id}/**: Delete a specific airplane."
+		},
+		{
+			"name": "Flights",
+			"item": [
+				{
+					"name": "Get List Flight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"flight_number\": \"TC2054\",\r\n        \"departure\": \"Ankara\",\r\n        \"destination\": \"Antalya\",\r\n        \"departure_time\": \"2025-03-16T17:00:00Z\",\r\n        \"arrival_time\": \"2024-03-16T18:15:00Z\",\r\n        \"airplane\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								""
+							]
+						},
+						"description": "### GET /flights/\n\nThis endpoint retrieves a list of flights.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/flights/`\n    \n- Headers: None\n    \n- { \"flight_number\": \"TC2054\", \"departure\": \"Ankara\", \"destination\": \"Antalya\", \"departure_time\": \"2025-03-16T17:00:00Z\", \"arrival_time\": \"2024-03-16T18:15:00Z\", \"airplane\": 1 }\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- { \"type\": \"array\", \"items\": { \"type\": \"object\", \"properties\": { \"id\": { \"type\": \"number\" }, \"tail_number\": { \"type\": \"string\" }, \"model\": { \"type\": \"string\" }, \"capacity\": { \"type\": \"number\" }, \"production_year\": { \"type\": \"number\" }, \"status\": { \"type\": \"boolean\" } } } }"
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Flight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"flight_number\": \"TK209\",\r\n        \"departure\": \"Ankara\",\r\n        \"destination\": \"Antalya\",\r\n        \"departure_time\": \"2025-03-16T14:00:00Z\",\r\n        \"arrival_time\": \"2025-03-16T15:15:00Z\",\r\n        \"airplane\": 6\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								""
+							]
+						},
+						"description": "### POST /flights/\n\nThis endpoint is used to create a new flight.\n\n#### Request\n\n- Method: POST\n    \n- URL: `http://127.0.0.1:8000/flights/`\n    \n- Headers: None\n    \n- Body:\n    \n    - flight_number (text, required): The flight number.\n        \n    - departure (text, required): The departure location.\n        \n    - destination (text, required): The destination location.\n        \n    - departure_time (text, required): The departure time in ISO 8601 format.\n        \n    - arrival_time (text, required): The arrival time in ISO 8601 format.\n        \n    - airplane (text, required): The ID of the airplane for the flight.\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- { \"type\": \"object\", \"properties\": { \"id\": { \"type\": \"number\" }, \"flight_number\": { \"type\": \"string\" }, \"departure\": { \"type\": \"string\" }, \"destination\": { \"type\": \"string\" }, \"departure_time\": { \"type\": \"string\", \"format\": \"date-time\" }, \"arrival_time\": { \"type\": \"string\", \"format\": \"date-time\" }, \"airplane\": { \"type\": \"number\" } }}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Flight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"flight_number\": \"TK209\",\r\n        \"departure\": \"Ankara\",\r\n        \"destination\": \"Antalya\",\r\n        \"departure_time\": \"2025-03-16T14:00:00Z\",\r\n        \"arrival_time\": \"2025-03-16T15:15:00Z\",\r\n        \"airplane\": 6\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								"{{id}}"
+							]
+						},
+						"description": "### GET /flights/{{id}}\n\nThis endpoint retrieves details of a specific flight identified by the provided ID.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/flights/{{id}}`\n    \n- Headers: None\n    \n- Body: N/A\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"number\"\n        },\n        \"flight_number\": {\n            \"type\": \"string\"\n        },\n        \"departure\": {\n            \"type\": \"string\"\n        },\n        \"destination\": {\n            \"type\": \"string\"\n        },\n        \"departure_time\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n        },\n        \"arrival_time\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n        },\n        \"airplane\": {\n            \"type\": \"number\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch By Id Flight",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \r\n        \"destination\": \"Adıyaman\"\r\n \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								"{{id}}"
+							]
+						},
+						"description": "### PATCH /flights/{{id}}\n\nThis endpoint updates the details of a specific flight.\n\n#### Request\n\n- Method: PATCH\n    \n- URL: `http://127.0.0.1:8000/flights/{{id}}`\n    \n- Headers: None\n    \n- Body:\n    \n    - destination (string, required): The new destination for the flight.\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- { \"id\": 0, \"destination\": \"\", \"departure_time\": \"\", \"arrival_time\": \"\" }\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"number\"\n        },\n        \"destination\": {\n            \"type\": \"string\"\n        },\n        \"departure_time\": {\n            \"type\": \"string\"\n        },\n        \"arrival_time\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By Id Flight",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \r\n        \"destination\": \"Adıyaman\"\r\n \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								"{{id}}"
+							]
+						},
+						"description": "### DELETE /flights/{{id}}\n\nThis endpoint is used to delete a specific flight identified by the provided ID.\n\n#### Request\n\n- Method: DELETE\n    \n- URL: `http://127.0.0.1:8000/flights/{{id}}`\n    \n- Headers: None\n    \n- { \"destination\": \"Adıyaman\"}\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \\[ { \"id\": 0, \"tail_number\": \"\", \"model\": \"\", \"capacity\": 0, \"production_year\": 0, \"status\": true }\\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"tail_number\": {\n                \"type\": \"string\"\n            },\n            \"model\": {\n                \"type\": \"string\"\n            },\n            \"capacity\": {\n                \"type\": \"number\"\n            },\n            \"production_year\": {\n                \"type\": \"number\"\n            },\n            \"status\": {\n                \"type\": \"boolean\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Flights Reservations By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n   \r\n    \r\n        \"destination\": \"Adıyaman\"\r\n \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/flights/{{id}}/reservations",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"flights",
+								"{{id}}",
+								"reservations"
+							]
+						},
+						"description": "### GET /flights/{{id}}/reservations\n\nThis endpoint retrieves the reservations for a specific flight.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/flights/{{id}}/reservations`\n    \n- Headers: None\n    \n- Body:\n    \n    - destination (string, required): The destination for the flight.\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \\[ { \"id\": 0, \"passenger_name\": \"\", \"seat_number\": \"\", \"status\": \"\" } \\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"passenger_name\": {\n                \"type\": \"string\"\n            },\n            \"seat_number\": {\n                \"type\": \"string\"\n            },\n            \"status\": {\n                \"type\": \"string\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "#### Flight API  \n**GET /flights/**: List all flights.  \n**GET /flights/{id}/**: Get details of a specific flight.  \n**GET /flights/{id}/reservations**: Get reservations made for a specific flight.  \n**POST /flights/**: Add a new flight.     \n**PATCH /flights/{id}/**: Update a specific flight.  \n**DELETE /flights/{id}/**: Delete a specific flightEndFragment"
+		},
+		{
+			"name": "Reservations",
+			"item": [
+				{
+					"name": "Get List Reservations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"passenger_name\": \"Josh Go11\",\r\n        \"passenger_email\": \"joshdoe@example.com\",\r\n        \"status\": true,\r\n        \"flight\": 6\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/reservations/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								""
+							]
+						},
+						"description": "### GET /reservations/\n\nThis endpoint retrieves a list of reservations.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/reservations/`\n    \n- Headers: None\n    \n- Body: N/A\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \"id\": 0, \"passenger_name\": \"string\", \"passenger_email\": \"string\", \"status\": true, \"flight\": 0\n    \n    }  \n    \\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"passenger_name\": {\n                \"type\": \"string\"\n            },\n            \"passenger_email\": {\n                \"type\": \"string\"\n            },\n            \"status\": {\n                \"type\": \"boolean\"\n            },\n            \"flight\": {\n                \"type\": \"number\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Reservations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"passenger_name\": \"Josh Go11\",\r\n        \"passenger_email\": \"josh@example.com\",\r\n        \"status\": true,\r\n        \"flight\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/reservations/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								""
+							]
+						},
+						"description": "### POST /reservations/\n\nThis endpoint is used to create a new reservation.\n\n#### Request\n\n- Method: POST\n    \n- URL: `http://127.0.0.1:8000/reservations/`\n    \n- Headers: None\n    \n- Body:\n    \n    - { \"passenger_name\": \"Josh Go11\", \"passenger_email\": \"josh@example.com\", \"status\": true, \"flight\": 1}\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \\[ { \"id\": 0, \"tail_number\": \"\", \"model\": \"\", \"capacity\": 0, \"production_year\": 0, \"status\": true }\\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"tail_number\": {\n                \"type\": \"string\"\n            },\n            \"model\": {\n                \"type\": \"string\"\n            },\n            \"capacity\": {\n                \"type\": \"number\"\n            },\n            \"production_year\": {\n                \"type\": \"number\"\n            },\n            \"status\": {\n                \"type\": \"boolean\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Reservations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"passenger_name\": \"Josh Go11\",\r\n        \"passenger_email\": \"josh@example.com\",\r\n        \"status\": true,\r\n        \"flight\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/reservations/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								"{{id}}"
+							]
+						},
+						"description": "### GET /reservations/{{id}}\n\nThis endpoint retrieves a specific reservation by ID.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://127.0.0.1:8000/reservations/{{id}}`\n    \n- Headers: None\n    \n- Body:\n    \n    - N/A\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- Body:\n    \n    - { \"passenger_name\": \"string\", \"passenger_email\": \"string\", \"status\": \"boolean\", \"flight\": \"number\"}\n        \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"passenger_name\": {\n            \"type\": \"string\"\n        },\n        \"passenger_email\": {\n            \"type\": \"string\"\n        },\n        \"status\": {\n            \"type\": \"boolean\"\n        },\n        \"flight\": {\n            \"type\": \"number\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch By Id Reservations",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"passenger_name\": \"Josh Go111\",\r\n        \"passenger_email\": \"josh@example.com\",\r\n        \"status\": true,\r\n        \"flight\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/reservations/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								"{{id}}"
+							]
+						},
+						"description": "### PATCH /reservations/{{id}}\n\nThis endpoint updates a specific reservation.\n\n#### Request\n\n- Method: PATCH\n    \n- URL: `http://127.0.0.1:8000/reservations/{{id}}`\n    \n- Headers: None\n    \n- Body:\n    \n    - { \"passenger_name\": \"Josh Go111\", \"passenger_email\": \"josh@example.com\", \"status\": true, \"flight\": 1}\n        \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"number\"\n        },\n        \"passenger_name\": {\n            \"type\": \"string\"\n        },\n        \"passenger_email\": {\n            \"type\": \"string\"\n        },\n        \"status\": {\n            \"type\": \"boolean\"\n        },\n        \"flight\": {\n            \"type\": \"number\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By Id Reservations",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"passenger_name\": \"Josh Go111\",\r\n        \"passenger_email\": \"josh@example.com\",\r\n        \"status\": true,\r\n        \"flight\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/reservations/{{id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								"{{id}}"
+							]
+						},
+						"description": "### DELETE /reservations/{{id}}\n\nThis endpoint is used to delete a specific reservation identified by the provided ID.\n\n#### Request\n\n- Method: DELETE\n    \n- URL: `http://127.0.0.1:8000/reservations/{{id}}`\n    \n- Headers: None\n    \n- { \"passenger_name\":\"\\[REDACTED\\]\", \"passenger_email\":\"\\[REDACTED\\]\", \"status\":true, \"flight\":1}\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- \\[ { \"id\": 0, \"tail_number\": \"\\[REDACTED\\]\", \"model\": \"\\[REDACTED\\]\", \"capacity\": 0, \"production_year\": 0, \"status\": true }\\]\n    \n\n#### JSON Schema for Response\n\n``` json\n{\n    \"type\": \"array\",\n    \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"id\": {\n                \"type\": \"number\"\n            },\n            \"tail_number\": {\n                \"type\": \"string\"\n            },\n            \"model\": {\n                \"type\": \"string\"\n            },\n            \"capacity\": {\n                \"type\": \"number\"\n            },\n            \"production_year\": {\n                \"type\": \"number\"\n            },\n            \"status\": {\n                \"type\": \"boolean\"\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "#### Reservation API  \n**GET/reservations/**: List all reservations.  \n**GET/reservations/{id}/**: Get details of a specific reservation.  \n**POST/reservations/**: Add a new reservation.  \n**PATCH/reservations/{id}/**: Update a specific reservation\n\n#### DELETE**/reservations/{id}/**: Delete a specific reservation."
+		}
+	]
+}
