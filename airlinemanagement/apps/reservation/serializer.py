@@ -15,3 +15,8 @@ class ReservationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("This flight is fully booked. No more seats available.")
         
         return data
+    
+    def validate_passenger_name(self, value):
+        if len(value) < 5:
+            raise serializers.ValidationError("Passenger name must be at least 5 characters long.")
+        return value

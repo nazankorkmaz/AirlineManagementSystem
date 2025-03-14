@@ -11,7 +11,7 @@ class Reservation(models.Model):
 
     passenger_email = models.EmailField()
 
-    reservation_code = models.CharField(max_length=6,unique=True,blank=True) #****
+    reservation_code = models.CharField(max_length=6,unique=True,blank=True) 
 
     flight = models.ForeignKey(Flight,on_delete= models.CASCADE, related_name='reservation_flight') # her reservasyon bir ucusa ait olmali | bir ucusun birden fazla rezervasyonu olabilir
 
