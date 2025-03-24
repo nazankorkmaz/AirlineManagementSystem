@@ -41,7 +41,7 @@ def airplane_id(request,id):
         return Response(serializer.data)
     
     if request.method == "PATCH":
-        serializer = AirplaneSerializer(airplanes, data=request.data, partial=True)
+        serializer = AirplaneSerializer(airplanes, data=request.data, partial=True)  #partial=True, sadece belirtilen alanların güncellenmesini sağlamaktır.  kullanılmazsa, eksik alanlar null olur veya hata alınır.
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -63,5 +63,5 @@ def airplane_flights(request, id):
    
     flights = airplane.flights_airplane.all()  # related_name ile ucuslar alinir
     serializer = FlightSerializer(flights, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data)  #flightserializera gider cunku fligt nesneleri gelecek ekrana
 

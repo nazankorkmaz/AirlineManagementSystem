@@ -8,9 +8,16 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     
     def validate(self, data):
-        flight = data['flight']
-        current_reservations = Reservation.objects.filter(flight=flight).count()
+        flight = data['flight']  #ilgili ucus
+        current_reservations = Reservation.objects.filter(flight=flight).count()  #ucusa yapilan rezervasyon sayisi
 
+        #flight Foreign key oldugu icin dogrudan flight nesnesidir
+
+        """
+        flight bir Flight model nesnesidir.
+        flight.airplane, bu uçuşa atanmış Airplane nesnesine erişir.
+        flight.airplane.capacity, bu uçağın kapasitesini (IntegerField) döndürür.
+        """
         if current_reservations >= flight.airplane.capacity:
             raise serializers.ValidationError("This flight is fully booked. No more seats available.")
         

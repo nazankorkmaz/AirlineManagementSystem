@@ -25,6 +25,7 @@ class Reservation(models.Model):
 
         return get_random_string(length=6, allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
 
+    # veritabanina kayit icin override 
     def save(self, *args, **kwargs):
         if not self.reservation_code:
             while True:

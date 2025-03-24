@@ -24,6 +24,8 @@ def flight(request):
         destination_location = request.GET.get('destination')
         departure_date = request.GET.get('departure_time')
         arrival_date = request.GET.get('arrival_time')
+        #request.GET, gelen HTTP GET isteğinin query parametrelerini saklayan bir nesnedir.Bu değeri al ve departure_location değişkenine ata.
+        #Eğer yoksa, None (boş) döndür.
 
         if departure_location:
             flights = flights.filter(departure__icontains=departure_location)
@@ -33,7 +35,7 @@ def flight(request):
             flights = flights.filter(departure_time__date=departure_date)
         if arrival_date:
             flights = flights.filter(arrival_time__date=arrival_date)
-
+        #icontains, SQL’de LIKE %value% gibi çalışır.
         
         serializer = FlightSerializer(flights, many=True)
         return Response(serializer.data)
