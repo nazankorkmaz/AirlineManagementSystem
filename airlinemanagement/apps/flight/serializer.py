@@ -17,8 +17,8 @@ class FlightSerializer(serializers.ModelSerializer):
         # Ayni ucagin ucuslari alinir
         overlapping_flights = Flight.objects.filter(
             airplane=airplane,
-            departure_time__lt=arrival_time,
-            arrival_time__gt=departure_time
+            departure_time__lt=arrival_time, #kalkis saati inis saatinden  kucukse
+            arrival_time__gt=departure_time # inis saati kalkis saatinden buyukse 
         )
 
         # Ayni zamanda var mi kontrolu yapilir
@@ -32,7 +32,7 @@ class FlightSerializer(serializers.ModelSerializer):
         #bir saat once ve sonra ucus var mi
         close_flights = Flight.objects.filter(
             airplane=airplane,
-            departure_time__range=(one_hour_before, one_hour_after)
+            departure_time__range=(one_hour_before, one_hour_after)  #cunku onemliolan yeni ucusun baslangic saati
         )
 
         #departure_time__range=(x, y), Django ORM’de bir tarih-saat alanının belirli bir aralık içinde olup olmadığını kontrol eden filtredir.

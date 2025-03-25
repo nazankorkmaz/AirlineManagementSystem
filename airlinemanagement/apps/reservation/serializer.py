@@ -7,8 +7,8 @@ class ReservationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     
-    def validate(self, data):
-        flight = data['flight']  #ilgili ucus
+    def validate(self, data):  # data sozluk yapısında geliyor 
+        flight = data['flight']  #ilgili ucus  # bunu yazdırırsan Flight modelindeki str methodu gelir yoksa ham hali gelir
         current_reservations = Reservation.objects.filter(flight=flight).count()  #ucusa yapilan rezervasyon sayisi
 
         #flight Foreign key oldugu icin dogrudan flight nesnesidir

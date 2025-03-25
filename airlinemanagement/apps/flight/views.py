@@ -25,7 +25,7 @@ def flight(request):
         departure_date = request.GET.get('departure_time')
         arrival_date = request.GET.get('arrival_time')
         #request.GET, gelen HTTP GET isteğinin query parametrelerini saklayan bir nesnedir.Bu değeri al ve departure_location değişkenine ata.
-        #Eğer yoksa, None (boş) döndür.
+        #Eğer yoksa, None (boş) döndür..get hata almayi onler olmamasi durumunda
 
         if departure_location:
             flights = flights.filter(departure__icontains=departure_location)
