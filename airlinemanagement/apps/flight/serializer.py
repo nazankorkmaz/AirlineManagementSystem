@@ -10,7 +10,7 @@ class FlightSerializer(serializers.ModelSerializer):
 
     #tum ucus verilerini bir butun olarak dogrular.
     def validate(self, data):
-        airplane = data.get('airplane')
+        airplane = data.get('airplane')  #kullanıcının gonderdigi verinin json dictine donusturulmus halini alir yani
         departure_time = data.get('departure_time')
         arrival_time = data.get('arrival_time')
 
